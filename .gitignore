@@ -1,3 +1,6 @@
+# For Avoiding Mistakenly Adding the Email/Password
+config.py
+
 # Editor Temp Files
 *~
 .*.swp
