@@ -17,7 +17,7 @@ __email__ = 'pengyu@libstarrify.so'
 __status__ = 'development'
 
 
-def attempt_login(email, password, per_request_timeout):
+def attempt_login(email, password, profile_url, per_request_timeout):
     """Attempts logging in to StackOverflow via StackExchange
 
     Args:
@@ -66,6 +66,10 @@ def attempt_login(email, password, per_request_timeout):
             allow_redirects=False,
             timeout=per_request_timeout)
         if request.status_code == 302:
+            index_url = 'http://stackoverflow.com/'
+            request = session.get(index_url, timeout=per_request_timeout)
+            profile_url = profile_url
+            request = session.get(profile_url, timeout=per_request_timeout)
             return True, 'Logged-in successfully.'
         elif request.status_code == 200:
             return False, (
@@ -87,6 +91,7 @@ def main():
     status, message = attempt_login(
         config.email,
         config.password,
+        config.profile_url,
         config.per_request_timeout)
     print(message)
     pass

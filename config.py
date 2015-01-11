@@ -12,4 +12,5 @@ __status__ = 'development'
 
 email = 'example@example.com'
 password = 'password'
+profile_url = 'http://stackoverflow.com/users/example'
 per_request_timeout = 10  # in seconds
